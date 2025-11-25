@@ -17,10 +17,21 @@ app.get("/math/circle/:r", (req, res) => {
 });
 
 //TODO2
-
+app.get("/math/rectangle/:width/:height", (req, res) => {
+  //TODO1
+  const width = parseFloat(req.params.width);
+  const height = parseFloat(req.params.height);
+  const area = width * height;
+  const perimeter = 2 * width + 2 * height;
+  const result = {
+    area: area.toFixed(2),
+    perimeter: perimeter.toFixed(2),
+  };
+  res.json(result);
+});
 //TODO3
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
