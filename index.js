@@ -30,7 +30,19 @@ app.get("/math/rectangle/:width/:height", (req, res) => {
   res.json(result);
 });
 //TODO3
-
+app.get("/math/power/:base/:exponent", (req, res) => {
+  //TODO1
+  const includeRoot = req.query.root === "true";
+  const base = parseFloat(req.params.base);
+  const exponent = parseFloat(req.params.exponent);
+  const result = {
+    power: Math.pow(base, exponent),
+  };
+  if (includeRoot) {
+    result.root = Math.pow(base, 1 / exponent);
+  }
+  res.json(result);
+});
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
